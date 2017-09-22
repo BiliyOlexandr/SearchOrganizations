@@ -1,5 +1,5 @@
 <resources>
   <string name="app_name">SearchOrganizations</string>
-  <string name="serch_organization">Serch Organization</string>
+  <string name="serch_organization">Serch Organizations</string>
   <string name="github_repositiry">GitHub repositiry</string>
 </resources>
