@@ -3,14 +3,14 @@ package com.example.android.searchorganizations.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class UserInfo {
 
   @SerializedName("name") @Expose private String mName;
   @SerializedName("location") @Expose private String mLocation;
   @SerializedName("blog") @Expose private String mBlog;
-  @SerializedName("picture") @Expose private String mPicture;
+  @SerializedName("avatar_url") @Expose private String mPicture;
 
-  public  User(String mName, String mLocation, String mBlog, String mPicture){
+  public UserInfo(String mName, String mLocation, String mBlog, String mPicture){
     this.mName = mName;
     this.mLocation = mLocation;
     this.mBlog = mBlog;
@@ -49,4 +49,7 @@ public class User {
     this.mPicture = picture;
   }
 
+  @Override public String toString() {
+    return mName;
+  }
 }
