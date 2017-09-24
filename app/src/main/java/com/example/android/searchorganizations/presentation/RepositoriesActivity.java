@@ -1,7 +1,8 @@
-package com.example.android.searchorganizations;
+package com.example.android.searchorganizations.presentation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import com.example.android.searchorganizations.R;
 
 public class RepositoriesActivity extends AppCompatActivity {
 
