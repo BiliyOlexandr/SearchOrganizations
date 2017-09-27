@@ -1,7 +1,8 @@
 package com.example.android.searchorganizations;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 /**

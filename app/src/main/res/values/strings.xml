@@ -3,4 +3,5 @@
   <string name="serch_organization">Serch Organizations</string>
   <string name="github_repositiry">GitHub repositiry</string>
   <string name="avatar">Avatar</string>
+  <string name="search">Search</string>
 </resources>

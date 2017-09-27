@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GitHubApiClient {
   private static final String URL = "https://api.github.com/";
 
-  private static final String ORGANIZATION_FILTER = "type:org";
-  private static final int DEFAULT_ITEMS_ON_PAGE = 2; // Limit caused by github requests limit
+  private static final String ORGANIZATION_FILTER = "type:organization";
+  private static final int DEFAULT_ITEMS_ON_PAGE = 3; // Limit caused by github requests limit
 
   private GitHubApi mApiInterface;
 

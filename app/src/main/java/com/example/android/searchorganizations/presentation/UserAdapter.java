@@ -1,5 +1,6 @@
 package com.example.android.searchorganizations.presentation;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +11,13 @@ import com.example.android.searchorganizations.R;
 import com.example.android.searchorganizations.model.UserInfo;
 import com.squareup.picasso.Picasso;
 import java.util.List;
+import android.content.Intent;
+import android.content.Context;
 
 class UserAdapter extends RecyclerView.Adapter<UserAdapter.UsersViewHolder> {
 
   private List<UserInfo> userList;
+  private Intent intent;
 
   public UserAdapter(List<UserInfo> userList) {
     this.userList = userList;
@@ -35,6 +39,12 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.UsersViewHolder> {
     holder.nameUser.setText(currentUser.getName());
     holder.locationUser.setText(currentUser.getLocation());
     holder.blogUser.setText(currentUser.getBlog());
+
+    holder.itemView.setOnClickListener(v -> {
+      Intent intent = new Intent(holder.imageUser.getContext(), RepositoriesActivity.class);
+      holder.imageUser.getContext().startActivity(intent);
+
+    });
   }
 
   @Override public int getItemCount() {
