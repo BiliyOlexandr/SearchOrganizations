@@ -9,7 +9,7 @@ public class SearchResult<T> {
 
   @SerializedName("items") @Expose private List<T> mItems = new ArrayList<>();
 
-  List<T> getItems() {
+  public List<T> getItems() {
     return mItems;
   }
 }

@@ -4,6 +4,7 @@ import com.example.android.searchorganizations.model.Organization;
 import com.example.android.searchorganizations.model.Repository;
 import com.example.android.searchorganizations.model.UserInfo;
 import io.reactivex.Observable;
+import java.util.List;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -16,6 +17,6 @@ public interface GitHubApi {
 
   @GET("/users/{username}") Observable<UserInfo> getUserInfo(@Path("username") String username);
 
-  @GET("/users/{username}/repos") Observable<SearchResult<Repository>> getUserRepositories(
+  @GET("/users/{username}/repos") Observable<List<Repository>> getUserRepositories(
       @Path("username") String username);
 }

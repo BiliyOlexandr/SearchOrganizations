@@ -18,9 +18,11 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.UsersViewHolder> {
 
   private List<UserInfo> userList;
   private Intent intent;
+  private UsersActivity.OnUserClickListener clickListener;
 
-  public UserAdapter(List<UserInfo> userList) {
+  public UserAdapter(List<UserInfo> userList, UsersActivity.OnUserClickListener clickListener) {
     this.userList = userList;
+    this.clickListener = clickListener;
   }
 
   @Override public UsersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,9 +43,9 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.UsersViewHolder> {
     holder.blogUser.setText(currentUser.getBlog());
 
     holder.itemView.setOnClickListener(v -> {
-      Intent intent = new Intent(holder.imageUser.getContext(), RepositoriesActivity.class);
-      holder.imageUser.getContext().startActivity(intent);
-
+      if(clickListener != null){
+        clickListener.onUserClicked(currentUser.getName());
+      }
     });
   }
 

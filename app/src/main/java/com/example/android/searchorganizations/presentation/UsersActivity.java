@@ -1,10 +1,12 @@
 package com.example.android.searchorganizations.presentation;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
+import com.example.android.searchorganizations.model.Repository;
 import com.example.android.searchorganizations.model.UserInfo;
 import com.example.android.searchorganizations.model.api.GitHubApiClient;
 import com.example.android.searchorganizations.R;
@@ -16,6 +18,7 @@ import java.util.List;
 
 public class UsersActivity extends AppCompatActivity {
 
+  public static final String CLICKED_USER = "Clicked user";
   private UserAdapter userAdapter;
   private GitHubApiClient gitHubApiClient;
   private RecyclerView recyclerView;
@@ -43,10 +46,19 @@ public class UsersActivity extends AppCompatActivity {
         userAdapter.notifyItemInserted(cache.indexOf(userInfo));
       });
 
-      userAdapter = new UserAdapter(cache);
+      userAdapter = new UserAdapter(cache, username -> {
+        Intent intent = new Intent(this, RepositoriesActivity.class);
+        intent.putExtra(CLICKED_USER, username);
+        startActivity(intent);
+      });
       recyclerView.setLayoutManager(new LinearLayoutManager(this));
       recyclerView.setAdapter(userAdapter);
     });
+  }
+
+  interface OnUserClickListener {
+    void onUserClicked(String username);
+
   }
 
 }

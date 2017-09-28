@@ -5,6 +5,7 @@ import com.example.android.searchorganizations.model.UserInfo;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
+import java.util.List;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -40,7 +41,7 @@ public class GitHubApiClient {
     return userObserver;
   }
 
-  public Observable<SearchResult<Repository>> getRepositories(String login) {
+  public Observable<List<Repository>> getRepositories(String login) {
     return mApiInterface.getUserRepositories(login);
   }
 

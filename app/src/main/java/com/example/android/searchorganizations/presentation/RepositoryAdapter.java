@@ -18,12 +18,13 @@ class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.ViewHolde
   }
 
   @Override public RepositoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_repository, parent, false);
     return new ViewHolder(view);
   }
 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
     Repository currentRepository = repositoryList.get(position);
+
     holder.nameRepository.setText(currentRepository.getName());
     holder.descriptionRepository.setText(currentRepository.getDescription());
   }
