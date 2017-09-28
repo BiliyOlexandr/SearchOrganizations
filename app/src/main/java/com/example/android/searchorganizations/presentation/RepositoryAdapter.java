@@ -13,12 +13,13 @@ class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.ViewHolde
 
   private List<Repository> repositoryList;
 
-  public RepositoryAdapter(List<Repository> repositoryList) {
+  RepositoryAdapter(List<Repository> repositoryList) {
     this.repositoryList = repositoryList;
   }
 
   @Override public RepositoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_repository, parent, false);
+    View view =
+        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_repository, parent, false);
     return new ViewHolder(view);
   }
 

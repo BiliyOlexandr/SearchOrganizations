@@ -30,9 +30,10 @@ public class GitHubApiClient {
     PublishSubject<UserInfo> userObserver = PublishSubject.create();
 
     // parse users info using userinfo request
-    mApiInterface.getUsers(DEFAULT_ITEMS_ON_PAGE, searchText, ORGANIZATION_FILTER)
+    mApiInterface.getUsers(DEFAULT_ITEMS_ON_PAGE, ORGANIZATION_FILTER + "+" + searchText)
         .subscribeOn(Schedulers.newThread())
-        .subscribe(searchResult -> Observable.range(0, searchResult.getItems().size())
+        .subscribe(searchResult ->
+            Observable.range(0, searchResult.getItems().size())
             .flatMap(position -> mApiInterface.getUserInfo( // fetching user information
                 searchResult.getItems().get(position).getLogin()))
             // notify subscribers about each parsed user

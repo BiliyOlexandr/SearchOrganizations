@@ -1,6 +1,5 @@
 package com.example.android.searchorganizations.presentation;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,24 +9,21 @@ import android.widget.TextView;
 import com.example.android.searchorganizations.R;
 import com.example.android.searchorganizations.model.UserInfo;
 import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
 import java.util.List;
-import android.content.Intent;
-import android.content.Context;
 
 class UserAdapter extends RecyclerView.Adapter<UserAdapter.UsersViewHolder> {
 
   private List<UserInfo> userList;
-  private Intent intent;
-  private UsersActivity.OnUserClickListener clickListener;
+  private SearchPresenter searchPresenter;
 
-  public UserAdapter(List<UserInfo> userList, UsersActivity.OnUserClickListener clickListener) {
-    this.userList = userList;
-    this.clickListener = clickListener;
+  UserAdapter(SearchPresenter searchPresenter) {
+    userList = new ArrayList<>();
+    this.searchPresenter = searchPresenter;
   }
 
   @Override public UsersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.item_user, parent, false);
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
     return new UsersViewHolder(view);
   }
 
@@ -43,14 +39,23 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.UsersViewHolder> {
     holder.blogUser.setText(currentUser.getBlog());
 
     holder.itemView.setOnClickListener(v -> {
-      if(clickListener != null){
-        clickListener.onUserClicked(currentUser.getName());
+      if (searchPresenter != null) {
+        searchPresenter.onUserClicked(currentUser.getName());
       }
     });
   }
 
   @Override public int getItemCount() {
     return userList.size();
+  }
+
+  void addUser(UserInfo userInfo) {
+    userList.add(userInfo);
+    notifyItemInserted(userList.indexOf(userInfo));
+  }
+
+  void clear() {
+    userList.clear();
   }
 
   static class UsersViewHolder extends RecyclerView.ViewHolder {

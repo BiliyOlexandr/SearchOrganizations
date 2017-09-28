@@ -13,7 +13,7 @@ public interface GitHubApi {
 
   @GET("/search/users") Observable<SearchResult<Organization>> getUsers(
       @Query("per_page") int userOnPage,
-      @Query("q") String... filtersQuery); // each string represents search filter
+      @Query("q") String filtersQuery);
 
   @GET("/users/{username}") Observable<UserInfo> getUserInfo(@Path("username") String username);
 
