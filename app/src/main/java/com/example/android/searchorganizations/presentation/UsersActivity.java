@@ -11,7 +11,7 @@ import com.example.android.searchorganizations.model.UserInfo;
 
 public class UsersActivity extends AppCompatActivity implements SearchViewCallbacks {
   public static final String CLICKED_USER = "Clicked user";
-  public static SearchPresenter searchPresenter; // the simplest singletone
+  public static SearchPresenter searchPresenter; // The simplest singletone
 
   private UserAdapter userAdapter;
   private RecyclerView recyclerView;
@@ -34,13 +34,14 @@ public class UsersActivity extends AppCompatActivity implements SearchViewCallba
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setAdapter(userAdapter);
   }
-
+  // Transition in RepositoriesActivity
   @Override public void navigateToRepositories(String username) {
     Intent intent = new Intent(this, RepositoriesActivity.class);
     intent.putExtra(CLICKED_USER, username);
     startActivity(intent);
   }
 
+  // Call addUser from UserAdapter
   @Override public void notifyUserObtained(UserInfo userInfo) {
     userAdapter.addUser(userInfo);
   }

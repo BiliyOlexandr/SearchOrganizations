@@ -23,14 +23,18 @@ public class RepositoriesActivity extends AppCompatActivity {
     setContentView(R.layout.activity_repositories);
     recyclerView = (RecyclerView) findViewById(R.id.repo_recyclerView);
 
+    // Add nome button and set title to actionbar
     ActionBar actionBar = getSupportActionBar();
     if (actionBar != null) {
       actionBar.setHomeButtonEnabled(true);
       actionBar.setDisplayHomeAsUpEnabled(true);
+      getActionBar().setTitle("Test");
     }
 
+    // Get position of selected user
     String username = getIntent().getExtras().getString(UsersActivity.CLICKED_USER);
 
+    // Get list of Repositories
     searchPresenter.getRepositories(username)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -41,6 +45,7 @@ public class RepositoriesActivity extends AppCompatActivity {
         });
   }
 
+  // Return to home activity
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:

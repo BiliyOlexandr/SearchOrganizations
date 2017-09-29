@@ -18,11 +18,11 @@ class SearchPresenter {
     this.viewCallbacks = viewCallbacks;
     gitHubApiClient = new GitHubApiClient();
   }
-
+  // Get observable to receive it in RepositoriesActivity
   Observable<List<Repository>> getRepositories(String username) {
     return gitHubApiClient.getRepositories(username);
   }
-
+  // Method for obtaining the userInfo
   void onStartSearching(String searchText) {
     if (searchSubscription != null) {
       searchSubscription.dispose();
@@ -33,7 +33,7 @@ class SearchPresenter {
         .subscribe(userInfo -> viewCallbacks.notifyUserObtained(userInfo),
             Throwable::printStackTrace);
   }
-
+  // Transition in RepositoriesActivity
   void onUserClicked(String name) {
     viewCallbacks.navigateToRepositories(name);
   }

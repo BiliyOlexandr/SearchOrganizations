@@ -11,6 +11,7 @@ import retrofit2.http.Query;
 
 public interface GitHubApi {
 
+  // Create requests
   @GET("/search/users") Observable<SearchResult<Organization>> getUsers(
       @Query("per_page") int userOnPage,
       @Query("q") String filtersQuery);

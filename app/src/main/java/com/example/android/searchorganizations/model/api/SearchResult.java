@@ -7,6 +7,7 @@ import java.util.List;
 
 public class SearchResult<T> {
 
+  // This class needs for get list of Users
   @SerializedName("items") @Expose private List<T> mItems = new ArrayList<>();
 
   public List<T> getItems() {
