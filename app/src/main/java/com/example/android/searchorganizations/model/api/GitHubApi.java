@@ -5,6 +5,7 @@ import com.example.android.searchorganizations.model.Repository;
 import com.example.android.searchorganizations.model.UserInfo;
 import io.reactivex.Observable;
 import java.util.List;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -14,7 +15,7 @@ public interface GitHubApi {
   // Create requests
   @GET("/search/users") Observable<SearchResult<Organization>> getUsers(
       @Query("per_page") int userOnPage,
-      @Query("q") String filtersQuery);
+      @Query(value = "q", encoded = true) String filtersQuery);
 
   @GET("/users/{username}") Observable<UserInfo> getUserInfo(@Path("username") String username);
 

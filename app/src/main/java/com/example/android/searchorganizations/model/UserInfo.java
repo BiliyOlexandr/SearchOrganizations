@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserInfo {
 
-  @SerializedName("login") @Expose private String mName;
+  @SerializedName("name") @Expose private String mName;
   @SerializedName("location") @Expose private String mLocation;
   @SerializedName("blog") @Expose private String mBlog;
   @SerializedName("avatar_url") @Expose private String mPicture;

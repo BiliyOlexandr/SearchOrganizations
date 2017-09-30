@@ -18,12 +18,15 @@ class SearchPresenter {
     this.viewCallbacks = viewCallbacks;
     gitHubApiClient = new GitHubApiClient();
   }
+
   // Get observable to receive it in RepositoriesActivity
   Observable<List<Repository>> getRepositories(String username) {
     return gitHubApiClient.getRepositories(username);
   }
   // Method for obtaining the userInfo
   void onStartSearching(String searchText) {
+    viewCallbacks.searchStarted();
+
     if (searchSubscription != null) {
       searchSubscription.dispose();
     }
@@ -31,7 +34,11 @@ class SearchPresenter {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(userInfo -> viewCallbacks.notifyUserObtained(userInfo),
-            Throwable::printStackTrace);
+            Throwable::printStackTrace,
+            () -> {
+              // Notify view about search stopped. When search is really stopped(#Observable.onComplete) !!
+              viewCallbacks.searchStopped();
+            });
   }
   // Transition in RepositoriesActivity
   void onUserClicked(String name) {

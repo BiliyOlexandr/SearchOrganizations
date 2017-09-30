@@ -1,22 +1,24 @@
 package com.example.android.searchorganizations.presentation;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import com.example.android.searchorganizations.R;
-import com.example.android.searchorganizations.model.Repository;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import java.util.List;
+
 
 public class RepositoriesActivity extends AppCompatActivity {
 
   private SearchPresenter searchPresenter = UsersActivity.searchPresenter;
   private RepositoryAdapter repositoryAdapter;
   private RecyclerView recyclerView;
+  private int repositoryCount;
+  private String repositoryName;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -28,7 +30,7 @@ public class RepositoriesActivity extends AppCompatActivity {
     if (actionBar != null) {
       actionBar.setHomeButtonEnabled(true);
       actionBar.setDisplayHomeAsUpEnabled(true);
-      getActionBar().setTitle("Test");
+      actionBar.setTitle(repositoryName + "Repositories " + "(" + repositoryCount + ")");
     }
 
     // Get position of selected user
@@ -39,9 +41,17 @@ public class RepositoriesActivity extends AppCompatActivity {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(repositories -> {
-          repositoryAdapter = new RepositoryAdapter(repositories);
-          recyclerView.setLayoutManager(new LinearLayoutManager(this));
-          recyclerView.setAdapter(repositoryAdapter);
+          if (repositories.size() > 0) {
+            repositoryCount = repositories.size();
+            repositoryName = username;
+            repositoryAdapter = new RepositoryAdapter(repositories);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(repositoryAdapter);
+          } else {
+            Snackbar.make(recyclerView, R.string.string_no_any_repository,
+                Snackbar.LENGTH_SHORT).show();
+
+          }
         });
   }
 

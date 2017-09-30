@@ -2,7 +2,7 @@ package com.example.android.searchorganizations.model;
 
 public class Organization {
 
-  private String login;
+  String login;
 
   public String getLogin() {
     return login;

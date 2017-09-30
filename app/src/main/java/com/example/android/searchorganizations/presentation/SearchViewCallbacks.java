@@ -9,4 +9,11 @@ interface SearchViewCallbacks {
 
   // Method for call addUser from UserAdapter
   void notifyUserObtained(UserInfo userInfo);
+
+  void searchStarted();
+
+  void searchStopped();
+
+
+
 }

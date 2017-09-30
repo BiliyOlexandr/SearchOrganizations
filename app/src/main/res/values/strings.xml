@@ -5,4 +5,7 @@
   <string name="avatar">Avatar</string>
   <string name="search">Search</string>
   <string name="repositories_title">Repositories</string>
+  <string name="string_internet_connection_not_available">Not acsses to internet</string>
+  <string name="string_loading_stopped">Loading has stopped</string>
+  <string name="string_no_any_repository">No any repsitory</string>
 </resources>
