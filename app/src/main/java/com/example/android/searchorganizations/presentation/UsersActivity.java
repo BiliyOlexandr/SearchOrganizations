@@ -12,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import com.example.android.searchorganizations.R;
@@ -38,8 +37,6 @@ public class UsersActivity extends AppCompatActivity implements SearchViewCallba
 
     searchText.addTextChangedListener(new TextWatcher() {
       @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        // TODO Move in #onTextChanged, Push and Commit
-
       }
 
       @Override public void onTextChanged(CharSequence s, int start, int before, int count) {

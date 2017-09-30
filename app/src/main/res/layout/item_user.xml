@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="82dp"
+    android:layout_height="100dp"
     android:layout_margin="4dp">
 
   <LinearLayout
@@ -13,8 +13,8 @@
       >
   <ImageView
       android:id="@+id/user_image_view"
-      android:layout_width="64dp"
-      android:layout_height="64dp"
+      android:layout_width="75dp"
+      android:layout_height="75dp"
       android:layout_margin="8dp"
       android:contentDescription="@string/avatar"
       />
@@ -28,7 +28,6 @@
         android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="sada"
         android:layout_margin="4dp"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
@@ -38,15 +37,13 @@
         android:id="@+id/user_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:text="sada"/>
+        android:layout_margin="4dp"/>
 
     <TextView
         android:id="@+id/user_blog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:text="sada"/>
+        android:layout_margin="4dp"/>
   </LinearLayout>
   </LinearLayout>
 </android.support.v7.widget.CardView>

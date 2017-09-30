@@ -30,7 +30,7 @@ public class RepositoriesActivity extends AppCompatActivity {
     if (actionBar != null) {
       actionBar.setHomeButtonEnabled(true);
       actionBar.setDisplayHomeAsUpEnabled(true);
-      actionBar.setTitle(repositoryName + "Repositories " + "(" + repositoryCount + ")");
+
     }
 
     // Get position of selected user
@@ -47,6 +47,7 @@ public class RepositoriesActivity extends AppCompatActivity {
             repositoryAdapter = new RepositoryAdapter(repositories);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(repositoryAdapter);
+            actionBar.setTitle(repositoryName + " Repositories " + "(" + repositoryCount + ")");
           } else {
             Snackbar.make(recyclerView, R.string.string_no_any_repository,
                 Snackbar.LENGTH_SHORT).show();
