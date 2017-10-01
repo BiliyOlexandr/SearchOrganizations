@@ -19,6 +19,7 @@ interface GitHubApi {
   @GET("/users/{username}") Observable<UserInfo> getUserInfo(@Path("username") String username);
 
   @GET("/users/{username}/repos") Observable<List<Repository>> getUserRepositories(
-      @Query("per_page") int repoOnPage,
-      @Query("username") String username);
+      @Path("username") String username);
+
 }
+

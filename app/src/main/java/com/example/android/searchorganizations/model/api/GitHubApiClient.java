@@ -1,5 +1,6 @@
 package com.example.android.searchorganizations.model.api;
 
+import android.util.Log;
 import com.example.android.searchorganizations.model.Repository;
 import com.example.android.searchorganizations.model.UserInfo;
 import io.reactivex.Observable;
@@ -14,8 +15,7 @@ public class GitHubApiClient {
   private static final String URL = "https://api.github.com/";
 
   private static final String ORGANIZATION_FILTER = "type:organization";
-  private static final int DEFAULT_ITEMS_ON_PAGE = 5; // Limit caused by github requests limit
-  private static final int DEFAULT_ITEMS_ON_REPOSITORY_PAGE = 5;
+  private static final int DEFAULT_ITEMS_ON_PAGE = 15; // Limit caused by github requests limit
 
   private GitHubApi mApiInterface;
 
@@ -38,13 +38,16 @@ public class GitHubApiClient {
             .flatMap(position -> mApiInterface.getUserInfo( // fetching user information
                 searchResult.getItems().get(position).getLogin()))
             // Notify subscribers about each parsed user
-            .subscribe(userObserver::onNext, userObserver::onError, userObserver::onComplete));
+            .subscribe(userObserver::onNext, userObserver::onError, userObserver::onComplete),
+            userObserver::onError);
 
     return userObserver;
   }
 
   public Observable<List<Repository>> getRepositories(String login) {
-    return mApiInterface.getUserRepositories(DEFAULT_ITEMS_ON_REPOSITORY_PAGE, login);
+
+    return mApiInterface.getUserRepositories(login);
+
   }
 
 }

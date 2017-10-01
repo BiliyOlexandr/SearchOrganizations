@@ -46,6 +46,7 @@ public class UsersActivity extends AppCompatActivity implements SearchViewCallba
             // Clear list for new search
             userAdapter.clear();
             searchPresenter.onStartSearching(addStr);
+
           } else {
             Snackbar.make(recyclerView, R.string.string_internet_connection_not_available,
                 Snackbar.LENGTH_SHORT).show();
@@ -61,6 +62,9 @@ public class UsersActivity extends AppCompatActivity implements SearchViewCallba
     recyclerView = (RecyclerView) findViewById(R.id.main_recyclerView);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setAdapter(userAdapter);
+
+
+
   }
 
   // Transition in RepositoriesActivity
@@ -88,7 +92,11 @@ public class UsersActivity extends AppCompatActivity implements SearchViewCallba
 
   // Set progressBar is gone and notify user about loading stopped
   @Override public void searchStopped() {
-    Snackbar.make(recyclerView, R.string.string_loading_stopped, Snackbar.LENGTH_SHORT).show();
     progressBar.setVisibility(View.GONE);
+  }
+
+  @Override public void onError(String errorText) {
+    Snackbar.make(recyclerView, errorText, Snackbar.LENGTH_SHORT).show();
+    searchStopped();
   }
 }

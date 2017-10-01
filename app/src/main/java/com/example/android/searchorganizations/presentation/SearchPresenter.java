@@ -5,6 +5,7 @@ import com.example.android.searchorganizations.model.api.GitHubApiClient;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.exceptions.OnErrorNotImplementedException;
 import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 
@@ -25,20 +26,23 @@ class SearchPresenter {
   }
   // Method for obtaining the userInfo
   void onStartSearching(String searchText) {
+
     viewCallbacks.searchStarted();
 
     if (searchSubscription != null) {
       searchSubscription.dispose();
     }
-    searchSubscription = gitHubApiClient.searchOrganization(searchText)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(userInfo -> viewCallbacks.notifyUserObtained(userInfo),
-            Throwable::printStackTrace,
-            () -> {
-              // Notify view about search stopped. When search is really stopped(#Observable.onComplete) !!
-              viewCallbacks.searchStopped();
-            });
+
+      searchSubscription = gitHubApiClient.searchOrganization(searchText)
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(userInfo -> viewCallbacks.notifyUserObtained(userInfo),
+              throwable -> viewCallbacks.onError(throwable.getMessage()),
+              () -> {
+                // Notify view about search stopped.
+                viewCallbacks.searchStopped();
+              });
+
   }
   // Transition in RepositoriesActivity
   void onUserClicked(String name) {

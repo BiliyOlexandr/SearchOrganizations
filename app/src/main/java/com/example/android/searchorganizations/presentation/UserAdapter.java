@@ -40,7 +40,7 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.UsersViewHolder> {
 
     holder.itemView.setOnClickListener(v -> {
       if (searchPresenter != null) {
-        searchPresenter.onUserClicked(currentUser.getName());
+        searchPresenter.onUserClicked(currentUser.getLogin());
       }
     });
   }
