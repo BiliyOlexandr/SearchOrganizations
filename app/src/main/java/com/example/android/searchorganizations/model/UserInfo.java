@@ -11,9 +11,7 @@ public class UserInfo {
   @SerializedName("blog") @Expose private String mBlog;
   @SerializedName("avatar_url") @Expose private String mPicture;
 
-
-
-  public UserInfo(String mLogin, String mName, String mLocation, String mBlog, String mPicture){
+  public UserInfo(String mLogin, String mName, String mLocation, String mBlog, String mPicture) {
     this.mLogin = mLogin;
     this.mName = mName;
     this.mLocation = mLocation;
@@ -41,5 +39,7 @@ public class UserInfo {
     return mLogin;
   }
 
-  public String getName() {return mName;}
+  public String getName() {
+    return mName;
+  }
 }

@@ -13,13 +13,11 @@ interface GitHubApi {
 
   // Create requests
   @GET("/search/users") Observable<SearchResult<Organization>> getUsers(
-      @Query("per_page") int userOnPage,
-      @Query(value = "q", encoded = true) String filtersQuery);
+      @Query("per_page") int userOnPage, @Query(value = "q", encoded = true) String filtersQuery);
 
   @GET("/users/{username}") Observable<UserInfo> getUserInfo(@Path("username") String username);
 
   @GET("/users/{username}/repos") Observable<List<Repository>> getUserRepositories(
       @Path("username") String username);
-
 }
 

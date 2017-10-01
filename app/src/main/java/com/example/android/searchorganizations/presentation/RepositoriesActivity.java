@@ -11,14 +11,12 @@ import com.example.android.searchorganizations.R;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-
 public class RepositoriesActivity extends AppCompatActivity {
 
   private SearchPresenter searchPresenter = UsersActivity.searchPresenter;
   private RepositoryAdapter repositoryAdapter;
   private RecyclerView recyclerView;
   private int repositoryCount;
-
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -27,7 +25,6 @@ public class RepositoriesActivity extends AppCompatActivity {
 
     // Add nome button and set title to actionbar
     ActionBar actionBar = getSupportActionBar();
-
 
     // Get position of selected user
     String username = getIntent().getExtras().getString(UsersActivity.CLICKED_USER);
@@ -48,9 +45,9 @@ public class RepositoriesActivity extends AppCompatActivity {
               actionBar.setTitle("Repositories " + "(" + repositoryCount + ")");
             }
           } else {
-            Snackbar.make(recyclerView, R.string.string_no_any_repository, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(recyclerView, R.string.string_no_any_repository, Snackbar.LENGTH_SHORT)
+                .show();
             actionBar.setTitle("Repositories ");
-
           }
         });
   }

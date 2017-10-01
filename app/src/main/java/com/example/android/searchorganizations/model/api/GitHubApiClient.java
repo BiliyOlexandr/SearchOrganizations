@@ -1,6 +1,5 @@
 package com.example.android.searchorganizations.model.api;
 
-import android.util.Log;
 import com.example.android.searchorganizations.model.Repository;
 import com.example.android.searchorganizations.model.UserInfo;
 import io.reactivex.Observable;
@@ -33,12 +32,11 @@ public class GitHubApiClient {
     // Parse users info using userinfo request
     mApiInterface.getUsers(DEFAULT_ITEMS_ON_PAGE, ORGANIZATION_FILTER + "+" + searchText)
         .subscribeOn(Schedulers.newThread())
-        .subscribe(searchResult ->
-            Observable.range(0, searchResult.getItems().size())
-            .flatMap(position -> mApiInterface.getUserInfo( // fetching user information
-                searchResult.getItems().get(position).getLogin()))
-            // Notify subscribers about each parsed user
-            .subscribe(userObserver::onNext, userObserver::onError, userObserver::onComplete),
+        .subscribe(searchResult -> Observable.range(0, searchResult.getItems().size())
+                .flatMap(position -> mApiInterface.getUserInfo( // fetching user information
+                    searchResult.getItems().get(position).getLogin()))
+                // Notify subscribers about each parsed user
+                .subscribe(userObserver::onNext, userObserver::onError, userObserver::onComplete),
             userObserver::onError);
 
     return userObserver;
@@ -47,7 +45,5 @@ public class GitHubApiClient {
   public Observable<List<Repository>> getRepositories(String login) {
 
     return mApiInterface.getUserRepositories(login);
-
   }
-
 }

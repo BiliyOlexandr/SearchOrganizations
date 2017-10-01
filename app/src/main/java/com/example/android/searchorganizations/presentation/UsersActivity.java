@@ -46,7 +46,6 @@ public class UsersActivity extends AppCompatActivity implements SearchViewCallba
             // Clear list for new search
             userAdapter.clear();
             searchPresenter.onStartSearching(addStr);
-
           } else {
             Snackbar.make(recyclerView, R.string.string_internet_connection_not_available,
                 Snackbar.LENGTH_SHORT).show();
@@ -62,9 +61,6 @@ public class UsersActivity extends AppCompatActivity implements SearchViewCallba
     recyclerView = (RecyclerView) findViewById(R.id.main_recyclerView);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setAdapter(userAdapter);
-
-
-
   }
 
   // Transition in RepositoriesActivity

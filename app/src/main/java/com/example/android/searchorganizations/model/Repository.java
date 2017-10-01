@@ -17,7 +17,6 @@ public class Repository {
     return mName;
   }
 
-
   public String getDescription() {
     return mDescription;
   }
