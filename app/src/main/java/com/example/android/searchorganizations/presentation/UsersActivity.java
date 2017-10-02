@@ -52,12 +52,9 @@ public class UsersActivity extends AppCompatActivity implements SearchViewCallba
           }
         }
       }
-
       @Override public void afterTextChanged(Editable s) {
-
       }
     });
-
     recyclerView = (RecyclerView) findViewById(R.id.main_recyclerView);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setAdapter(userAdapter);
@@ -87,9 +84,7 @@ public class UsersActivity extends AppCompatActivity implements SearchViewCallba
   }
 
   // Set progressBar is gone and notify user about loading stopped
-  @Override public void searchStopped() {
-    progressBar.setVisibility(View.GONE);
-  }
+  @Override public void searchStopped() {progressBar.setVisibility(View.GONE);}
 
   @Override public void onError(String errorText) {
     Snackbar.make(recyclerView, errorText, Snackbar.LENGTH_SHORT).show();

@@ -16,7 +16,7 @@ public class RepositoriesActivity extends AppCompatActivity {
   private SearchPresenter searchPresenter = UsersActivity.searchPresenter;
   private RepositoryAdapter repositoryAdapter;
   private RecyclerView recyclerView;
-  private int repositoryCount;
+  private int repositoryCount = 0;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -25,6 +25,11 @@ public class RepositoriesActivity extends AppCompatActivity {
 
     // Add nome button and set title to actionbar
     ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setHomeButtonEnabled(true);
+      actionBar.setDisplayHomeAsUpEnabled(true);
+      actionBar.setTitle("Repositories " + "(" + repositoryCount + ")");
+    }
 
     // Get position of selected user
     String username = getIntent().getExtras().getString(UsersActivity.CLICKED_USER);
@@ -39,15 +44,12 @@ public class RepositoriesActivity extends AppCompatActivity {
             repositoryAdapter = new RepositoryAdapter(repositories);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(repositoryAdapter);
-            if (actionBar != null) {
-              actionBar.setHomeButtonEnabled(true);
-              actionBar.setDisplayHomeAsUpEnabled(true);
-              actionBar.setTitle("Repositories " + "(" + repositoryCount + ")");
-            }
+            repositoryCount = repositories.size();
+            actionBar.setTitle("Repositories " + "(" + repositoryCount + ")");
           } else {
             Snackbar.make(recyclerView, R.string.string_no_any_repository, Snackbar.LENGTH_SHORT)
                 .show();
-            actionBar.setTitle("Repositories ");
+            actionBar.setTitle("Repositories " + "(" + repositoryCount + ")");
           }
         });
   }
