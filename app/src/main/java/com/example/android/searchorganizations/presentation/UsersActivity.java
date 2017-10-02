@@ -84,10 +84,20 @@ public class UsersActivity extends AppCompatActivity implements SearchViewCallba
   }
 
   // Set progressBar is gone and notify user about loading stopped
-  @Override public void searchStopped() {progressBar.setVisibility(View.GONE);}
+  @Override public void searchStopped() {
+    progressBar.setVisibility(View.GONE);
+    if(userAdapter.getItemCount() == 0){
+      Snackbar.make(recyclerView, R.string.string_no_any_user, Snackbar.LENGTH_SHORT).show();
+    }
+}
+
+  @Override public void searchAfterExceptionStopped() {
+    progressBar.setVisibility(View.GONE);
+  }
 
   @Override public void onError(String errorText) {
     Snackbar.make(recyclerView, errorText, Snackbar.LENGTH_SHORT).show();
-    searchStopped();
+    searchAfterExceptionStopped();
+
   }
 }

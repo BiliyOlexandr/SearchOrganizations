@@ -37,7 +37,8 @@ class SearchPresenter {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(userInfo -> viewCallbacks.notifyUserObtained(userInfo),
-            throwable -> viewCallbacks.onError(throwable.getMessage()), () -> {
+            throwable -> viewCallbacks.onError(throwable.getMessage()),
+            () -> {
               // Notify view about search stopped.
               viewCallbacks.searchStopped();
             });

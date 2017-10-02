@@ -14,5 +14,7 @@ interface SearchViewCallbacks {
 
   void searchStopped();
 
+  void searchAfterExceptionStopped();
+
   void onError(String errorText);
 }
